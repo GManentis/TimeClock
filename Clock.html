@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.clock
+{
+  position:absolute;
+  width:200px;
+  height:200px;
+  background-color:black;
+  border-radius:100%;
+  background-image:url("clock.png");
+  background-size:200px;
+}
+
+*
+{
+  margin:0;
+  padding:0;
+  transform-origin:bottom;
+  -ms-transform-origin:bottom;
+  -webkit-transform-origin:bottom;
+}
+
+#s
+{
+ background-color:red;
+ height:95px;
+}
+
+#m
+{
+ background-color:black;
+ height:95px;
+}
+
+
+
+.transform
+{
+  width:2px;
+  position:absolute;
+  left:100px;
+  top:5px;
+}
+
+#h
+{
+ background-color:black;
+ height:75px;
+ width:5px;
+ border-radius:70%;
+ top:25px;
+ }
+ 
+#center
+{ 
+  position:absolute;
+  top:93px;
+  left:92px;
+  width:15px;
+  height:15px;
+  background-color:black;
+  border-radius:100%;
+  
+}
+
+
+</style>
+<script>
+function tick()
+{
+	setInterval(function()
+	{
+       var d = new Date();
+	   var h = 30*((d.getHours()%12) +(d.getMinutes()/60) );
+	   var m = 6*d.getMinutes();
+	   var s = 6*d.getSeconds();
+	   
+	   document.getElementById("s").style.cssText = "transform:rotate("+s+"deg);"; 
+	   document.getElementById("m").style.cssText = "transform:rotate("+m+"deg);"; 
+	   document.getElementById("h").style.cssText = "transform:rotate("+h+"deg);";  
+
+	},1000);
+}
+
+function Digital()
+{
+  setInterval(function()
+	{
+       var d = new Date();
+	   var h = d.getHours();
+	   var m = d.getMinutes();
+	   var s = d.getSeconds();
+	   
+	   var z = h+":"+m+":"+s;
+	   document.getElementById("digital").innerHTML = z;
+	   
+
+	},1000);
+}
+
+function DO()
+{
+ tick();
+ Digital();
+}
+</script>
+</head>
+<body onload="DO()">
+<div class="clock">
+	<div id="s" class="transform"></div>
+	<div id="m" class="transform"></div>
+	<div id="h" class="transform"></div>
+	<div id="center"></div>
+</div>
+<b>
+<div style= "top:250px;position:absolute; font-style:italic; font-size:100px;" id="digital">
+</div>
+</b>
+</body>
+</html>
